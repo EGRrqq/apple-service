@@ -1,6 +1,11 @@
 {
   "name": "apple-service",
   "version": "0.0.6",
+  "author": "EGRrqq",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EGRrqq/apple-service"
+  },
   "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,3 +21,4 @@
     "typescript": "^5.6.3"
   }
 }
+
