@@ -1,3 +1,7 @@
-export const a: number = 253;
+import { StoreService } from "./service/AppStoreService";
 
-console.log(a);
+// plug n play func
+// export const getReviews = () => {}
+
+// get links
+export const { getAppStoreLink } = new StoreService();
