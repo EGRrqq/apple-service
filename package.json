@@ -19,7 +19,8 @@
   "scripts": {
     "build": "pnpm tsup src/index.ts --format esm,cjs --dts --clean --minify terser",
     "release": "pnpm build && changeset publish",
-    "lint": "tsc"
+    "lint": "tsc",
+    "test": "pnpm tsup tests/**/*.test.ts --outDir tests/dist --clean --minify terser && bash tests/run-tests.bash"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
