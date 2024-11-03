@@ -4,5 +4,6 @@ dist
 .env
 .DS_Store
 
-.code
+.vscode
+!.vscode/extensions.json
 .idea
