@@ -20,12 +20,13 @@
     "build": "pnpm tsup src/index.ts --format esm,cjs --dts --clean --minify terser",
     "release": "pnpm build && changeset publish",
     "lint": "tsc",
-    "test": "pnpm tsup tests/**/*.test.ts --outDir tests/dist --clean --minify terser && bash tests/run-tests.bash"
+    "test": "pnpm test:build && pnpm test:run",
+    "test:build": "pnpm tsup tests/**/*.test.ts --outDir tests/dist --clean --minify --sourcemap inline",
+    "test:run": "bash tests/run-tests.bash"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.9",
     "@types/node": "^22.8.6",
-    "terser": "^5.36.0",
     "tsup": "^8.3.0",
     "typescript": "^5.6.3"
   },

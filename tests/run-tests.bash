@@ -1,3 +1,3 @@
 for file in tests/dist/*.test.js; do
-    node "$file"
+    node --enable-source-maps "$file"
 done
