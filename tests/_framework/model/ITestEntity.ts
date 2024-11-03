@@ -1,10 +1,6 @@
-export interface ITestCallback {
-  testEntity: ITestEntity;
-  duration: number;
-}
-
-interface ITestEntity {
+export interface ITestEntity<T> {
   name: string;
-  entry: string;
-  expect: string;
+  received: T;
+  expected: T;
+  duration: number;
 }

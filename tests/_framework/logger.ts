@@ -1,8 +1,8 @@
-import type { ITestCallback } from "./model/ITestEntity";
+import type { ITestEntity } from "./model/ITestEntity";
 
-interface ILogger {
+interface ILogger<T> {
   successFlag: boolean;
-  logData: ITestCallback;
+  logData: ITestEntity<T>;
 }
 
 // text stuff
@@ -11,18 +11,18 @@ const separator = "----------------------------------";
 const greenText = (text: string) => `\x1b[42m${text}\x1b[0m`;
 const boldText = (text: string) => `\x1b[1m${text}\x1b[0m`;
 
-export const logger = ({ logData, successFlag }: ILogger) =>
-  successFlag ? successLog(logData) : errorLog();
+export const logger = async <T>({ logData, successFlag }: ILogger<T>) =>
+  successFlag ? successLog<T>(logData) : errorLog();
 
-const successLog = ({ testEntity, duration }: ITestCallback) => {
+const successLog = <T>(e: ITestEntity<T>) => {
   console.log(
     "\n",
     `${greenText("  ")}`,
-    `${boldText("name")}: ${testEntity.name}`,
+    `${boldText("name")}: ${e.name}`,
     "\n",
     `${whiteSpace}${boldText("path")}: ${__filename}`,
     "\n",
-    `${whiteSpace}${boldText("time")}: ${duration.toFixed(4)} ms`,
+    `${whiteSpace}${boldText("time")}: ${e.duration.toFixed(4)} ms`,
     "\n\n ----------------------------------"
   );
 };

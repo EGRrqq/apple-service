@@ -1,8 +1,7 @@
 import type { IAppStoreLink } from "@/model/ILinks";
-import type { ITestCallback } from "../_framework/model/ITestEntity";
 
 import { StoreService } from "@/service/AppStoreService";
-import { test } from "../_framework/testRunner";
+import { Test } from "../_framework/test";
 
 const { getAppStoreLink } = new StoreService();
 
@@ -11,10 +10,8 @@ const linkData: IAppStoreLink = {
   option: "see-all=reviews",
 };
 
-const linkEntity: ITestCallback["testEntity"] = {
-  name: "get app store reviews link",
-  entry: getAppStoreLink(linkData),
-  expect: `https://apps.apple.com/${linkData.data.countryCode}/app/id${linkData.data.appId}?${linkData.option}`,
-};
+const expect = `https://apps.apple.com/${linkData.data.countryCode}/app/id${linkData.data.appId}?${linkData.option}`;
 
-test(async () => linkEntity);
+new Test<string>("get app store reviews link")
+  .expect(getAppStoreLink(linkData))
+  .toBe(expect);

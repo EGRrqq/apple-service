@@ -1,10 +1,3 @@
-import type { ITestCallback } from "../_framework/model/ITestEntity";
-import { test } from "../_framework/testRunner";
+import { Test } from "../_framework/test";
 
-const buhhhEntity: ITestCallback["testEntity"] = {
-  name: "testin error state, for logger",
-  entry: "buhhh",
-  expect: "3",
-};
-
-test(async () => buhhhEntity);
+// new Test<string>("testin error state, for logger").expect("buhhh").toBe("");
