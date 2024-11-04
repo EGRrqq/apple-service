@@ -6,7 +6,7 @@ import type { PartialRequired } from "../utils/PartialRequired";
 import { isProp } from "../utils/IsProp";
 
 type TExpect<T> = (received: TReceived<T>) => { toBe: TToBe<T> };
-type TToBe<T> = (expected: T) => void;
+type TToBe<T> = (expected: T) => Promise<void>;
 
 interface ITest<T> {
   expect: TExpect<T>;
