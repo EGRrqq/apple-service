@@ -1,7 +1,7 @@
 import type { IAppStoreLink } from "@/model/ILinks";
 
 import { StoreService } from "@/service/AppStoreService";
-import { Test } from "../_framework/test";
+import { Test } from "../_framework/";
 
 const { getAppStoreLink } = new StoreService();
 
