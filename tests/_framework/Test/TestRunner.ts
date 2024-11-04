@@ -10,7 +10,7 @@ export class TestRunner {
   ): TReceivedWithDuration<T> {
     // Record start time
     const startTime = performance.now();
-    // Assign resive
+    // Assign receive
     let received = await this.#getReceive(rec);
 
     // Record end time

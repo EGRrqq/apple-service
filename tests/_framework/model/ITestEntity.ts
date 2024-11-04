@@ -4,3 +4,4 @@ export interface ITestEntity<T> {
   expected: T;
   duration: number;
 }
+
