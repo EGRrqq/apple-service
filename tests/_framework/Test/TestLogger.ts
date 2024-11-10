@@ -7,16 +7,22 @@ const greenText = (text: string) => `\x1b[42m${text}\x1b[0m`;
 const redText = (text: string) => `\x1b[41m${text}\x1b[0m`;
 const boldText = (text: string) => `\x1b[1m${text}\x1b[0m`;
 
+interface ILog<T> {
+  testEntity: ITestEntity<T>;
+  successFlag: boolean;
+  errMsg: string;
+}
+
 export class TestLogger {
   // Log the test results based on the success flag
-  static log = async <T>(testEntity: ITestEntity<T>) =>
-    (await this.#successFlag(testEntity))
-      ? await this.#successLog<T>(testEntity)
-      : await this.#errorLog(testEntity);
+  static log = async <T>({ testEntity, successFlag, errMsg }: ILog<T>) => {
+    if (!successFlag) {
+      await this.#errorLog(testEntity);
+      throw Error(errMsg);
+    }
 
-  // Determine if the test was successful
-  static #successFlag = async <T>(e: ITestEntity<T>) =>
-    e.received === e.expected;
+    await this.#successLog<T>(testEntity);
+  };
 
   // Log the success message
   static #successLog = async <T>(e: ITestEntity<T>) => {
@@ -48,8 +54,6 @@ export class TestLogger {
       `${whiteSpace}${boldText("received")}: ${e.received}`,
       `\n\n ${separator}`
     );
-
-    throw Error(`${e.expected} not equal to ${e.received}`);
   };
 }
 
