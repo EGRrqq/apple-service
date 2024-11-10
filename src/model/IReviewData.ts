@@ -13,7 +13,7 @@ export interface IReviewData {
 }
 
 // blocks
-export interface IReview {
+interface IReview {
   author: IReviewAuthor;
   updated: IReviewLabel;
   "im:rating": IReviewLabel;
@@ -61,3 +61,4 @@ interface IReviewAuthor {
 interface IReviewLabel {
   label: string;
 }
+
