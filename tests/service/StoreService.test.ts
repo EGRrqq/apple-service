@@ -13,5 +13,5 @@ const linkData: IAppStoreLink = {
 const expect = `https://apps.apple.com/${linkData.data.countryCode}/app/id${linkData.data.appId}?${linkData.option}`;
 
 new Test<string>("get app store reviews link")
-  .expect(getAppStoreLink(linkData))
+  .expect(() => getAppStoreLink(linkData))
   .toBe(expect);
